@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SampleForDictionary
 {
@@ -6,7 +7,28 @@ namespace SampleForDictionary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Dictionary<string, Figure> figures = new Dictionary<string, Figure>()
+            {
+                { "Sircle", new Figure(){ SideCount = 1, SideLength =1} },
+                { "Square", new Figure(){ SideCount =4, SideLength =1} }   
+            };
+
+            figures.Add("Triangle", new Figure() { SideCount = 3, SideLength = 1 });
+            figures.ContainsKey("Triangle");
+
+            var fig = figures["Triangle"];
+            figures["Triangle"] = new Figure() { SideCount = 5, SideLength = 1 };
+            figures.Remove("Triangle");
+
+            foreach (var item in figures)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value}");
+            }
+
+            foreach (var item in figures.Keys)
+            {
+                Console.WriteLine($"{item}");
+            }
         }
     }
 }
